@@ -58,6 +58,7 @@ public class ArenaServiceTests
         Assert.NotNull(team.Players);
         Assert.NotEmpty(team.Players);
         Assert.Equal(2, team.Players.Count);
+        Assert.Equal(Bracket.Twos, team.Bracket);
     }
 
     private static void AssertPlayer(TeamRecord team, string playerName, Race race, Class @class)
