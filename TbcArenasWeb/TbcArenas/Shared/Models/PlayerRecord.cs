@@ -9,3 +9,19 @@ public class PlayerRecord
     public Class Class { get; set; }
     public Race Race { get; set; }
 }
+
+public static class Extensions
+{
+    public static Race ToRace(this string value)
+    {
+        return Enum.TryParse<Race>(value, ignoreCase: true, out var result)
+            ? result
+            : value switch
+        {
+            "SCOURGE" => Race.Undead,
+            _ => Race.None,
+        };
+    }
+
+    public static Class ToClass(this string value) => Enum.TryParse<Class>(value, ignoreCase: true, out var result) ? result : Class.None;
+}

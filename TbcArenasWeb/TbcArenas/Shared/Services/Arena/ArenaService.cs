@@ -12,12 +12,20 @@ public class ArenaService : IArenaService
     public IEnumerable<ArenaRecord> Some(IEnumerable<ArenaCsvRecord> arenaCsvRecords)
     {
         var mappedArenaRecords = new List<ArenaRecord>();
+        var orderedFilteredArenaCsvRecords = arenaCsvRecords
+            .Where(x => x.Duration != 0)
+            .OrderBy(x => long.Parse(x.EndTime));
 
-        foreach (var arenaCsvRecord in arenaCsvRecords)
+        foreach (var arenaCsvRecord in orderedFilteredArenaCsvRecords)
         {
             var mappedArenaRecord = this.mapper.Map<ArenaRecord>(arenaCsvRecord);
 
-
+            mappedArenaRecord.Team = new TeamRecord
+            {
+                Name = arenaCsvRecord.TeamName,
+                Mmr = arenaCsvRecord.Mmr,
+                Rating = arenaCsvRecord.NewTeamRating
+            };
 
             mappedArenaRecords.Add(mappedArenaRecord);
         }

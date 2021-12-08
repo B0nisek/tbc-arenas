@@ -15,7 +15,7 @@ public class ArenaRecord
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public Zone Zone { get; set; }
-    public DateTime Duration { get; set; }
+    public TimeSpan Duration { get; set; }
     public TeamRecord Team { get; set; }
     public TeamRecord EnemyTeam { get; set; }
     public int OldTeamRating { get; set; }
@@ -30,5 +30,10 @@ public class ArenaRecord
 
 public class ArenaRecordProfile : Profile
 {
-    public ArenaRecordProfile() => this.CreateMap<ArenaCsvRecord, ArenaRecord>();
+    public ArenaRecordProfile() => this.CreateMap<ArenaCsvRecord, ArenaRecord>()
+        .ForMember(dest => dest.IsRanked, opt => opt.MapFrom(src => src.IsRanked == "YES"))
+        .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => DateTime.UnixEpoch.AddSeconds(double.Parse(src.StartTime))))
+        .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => DateTime.UnixEpoch.AddSeconds(double.Parse(src.EndTime))))
+        .ForMember(dest => dest.Zone, opt => opt.MapFrom(src => (Zone)src.ZoneId))
+        .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => TimeSpan.FromSeconds(src.Duration)));
 }
