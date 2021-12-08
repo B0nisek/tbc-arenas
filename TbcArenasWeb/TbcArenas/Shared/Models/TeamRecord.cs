@@ -7,6 +7,6 @@ public class TeamRecord
     public int Mmr { get; set; }
     public int Rating { get; set; }
     public string Name { get; set; }
-    public IEnumerable<PlayerRecord> Players { get; set; } = new List<PlayerRecord>();
-    public Faction Faction { get; set; }
+    public HashSet<PlayerRecord> Players { get; set; } = new();
+    public Faction Faction => this.Players.First() == null ? Faction.Horde : this.Players.First().GetFaction();
 }

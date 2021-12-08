@@ -2,7 +2,7 @@
 
 namespace TbcArenas.Shared.Models;
 
-public enum Zone 
+public enum Zone
 {
     RuinsOfLordaeron = 3968,
     Nagrand = 3698,
