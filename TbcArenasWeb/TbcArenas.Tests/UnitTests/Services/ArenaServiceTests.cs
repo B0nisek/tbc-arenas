@@ -38,26 +38,26 @@ public class ArenaServiceTests
         Assert.Equal(Zone.RuinsOfLordaeron, mappedArenaRecord.Zone);
 
         var team = mappedArenaRecord.Team;
-        Assert.NotNull(team);
-        Assert.Equal("giga bIasters", team.Name);
-        Assert.Equal(Faction.Horde, team.Faction);
-        Assert.NotNull(team.Players);
-        Assert.NotEmpty(team.Players);
-        Assert.Equal(2, team.Players.Count);
 
+        AssertTeam(team, "giga bIasters", Faction.Horde);
         AssertPlayer(team, "Bonisek", Race.BloodElf, Class.Paladin);
         AssertPlayer(team, "Shamazingx", Race.Orc, Class.Shaman);
 
         var enemyTeam = mappedArenaRecord.EnemyTeam;
-        Assert.NotNull(enemyTeam);
-        Assert.Equal("Coming soon", enemyTeam.Name);
-        Assert.Equal(Faction.Horde, enemyTeam.Faction);
-        Assert.NotNull(enemyTeam.Players);
-        Assert.NotEmpty(enemyTeam.Players);
-        Assert.Equal(2, enemyTeam.Players.Count);
 
-        AssertPlayer(enemyTeam, "Wakaliwood", Race.Tauren, Class.Druid);
-        AssertPlayer(enemyTeam, "Tebatusasula", Race.Undead, Class.Rogue);
+        AssertTeam(enemyTeam, "Coming soon", Faction.Alliance);
+        AssertPlayer(enemyTeam, "Wakaliwood", Race.NightElf, Class.Druid);
+        AssertPlayer(enemyTeam, "Tebatusasula", Race.Human, Class.Rogue);
+    }
+
+    private static void AssertTeam(TeamRecord team, string teamName, Faction faction)
+    {
+        Assert.NotNull(team);
+        Assert.Equal(teamName, team.Name);
+        Assert.Equal(faction, team.Faction);
+        Assert.NotNull(team.Players);
+        Assert.NotEmpty(team.Players);
+        Assert.Equal(2, team.Players.Count);
     }
 
     private static void AssertPlayer(TeamRecord team, string playerName, Race race, Class @class)
@@ -90,11 +90,10 @@ public class ArenaServiceTests
             EnemyTeamName = "Coming soon",
             EnemyPlayerName1 = "Wakaliwood",
             EnemyPlayerClass1 = "DRUID",
-            EnemyPlayerRace1 = "TAUREN",
+            EnemyPlayerRace1 = "NIGHTELF",
             EnemyPlayerName2 = "Tebatusasula",
             EnemyPlayerClass2 = "ROGUE",
-            EnemyPlayerRace2 = "SCOURGE",
-            EnemyFaction = "HORDE"
+            EnemyPlayerRace2 = "HUMAN"
         }
     };
 }
