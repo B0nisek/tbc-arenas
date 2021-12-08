@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace TbcArenas.Server.Data.Migrations;
 public partial class CreateIdentitySchema : Migration
