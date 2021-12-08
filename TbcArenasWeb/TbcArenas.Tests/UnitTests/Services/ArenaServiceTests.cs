@@ -79,6 +79,8 @@ public class ArenaServiceTests
             EndTime = "1638906290",
             ZoneId = 3968,
             TeamName = "giga bIasters",
+            Mmr = 2200,
+            OldTeamRating = 2189,
             TeamPlayerName1 = "Bonisek",
             TeamPlayerClass1 = "PALADIN",
             TeamPlayerRace1 = "BloodElf",

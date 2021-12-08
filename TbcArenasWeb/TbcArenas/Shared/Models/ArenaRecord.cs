@@ -31,7 +31,7 @@ public class ArenaRecord
 public class ArenaRecordProfile : Profile
 {
     public ArenaRecordProfile() => this.CreateMap<ArenaCsvRecord, ArenaRecord>()
-        .ForMember(dest => dest.IsRanked, opt => opt.MapFrom(src => src.IsRanked == "YES"))
+        .ForMember(dest => dest.IsRanked, opt => opt.MapFrom(src => src.IsRanked.Equals("YES")))
         .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => DateTime.UnixEpoch.AddSeconds(double.Parse(src.StartTime))))
         .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => DateTime.UnixEpoch.AddSeconds(double.Parse(src.EndTime))))
         .ForMember(dest => dest.Zone, opt => opt.MapFrom(src => (Zone)src.ZoneId))

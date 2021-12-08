@@ -8,5 +8,5 @@ public class TeamRecord
     public int Rating { get; set; }
     public string Name { get; set; }
     public HashSet<PlayerRecord> Players { get; set; } = new();
-    public Faction Faction => this.Players.First() == null ? Faction.Horde : this.Players.First().GetFaction();
+    public Faction Faction => this.Players.First() is null ? Faction.Horde : this.Players.First().GetFaction();
 }
