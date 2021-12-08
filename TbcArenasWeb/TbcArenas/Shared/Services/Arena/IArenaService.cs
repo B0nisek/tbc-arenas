@@ -4,5 +4,5 @@ namespace TbcArenas.Shared.Services.Arena;
 
 public interface IArenaService
 {
-    IEnumerable<ArenaRecord> Some(IEnumerable<ArenaCsvRecord> arenaCsvRecords);
+    IEnumerable<ArenaRecord> MapCsvRecords(IEnumerable<ArenaCsvRecord> arenaCsvRecords);
 }

@@ -19,9 +19,9 @@ public class ArenaServiceTests
     }
 
     [Fact]
-    public void ArenaService_CorrectlyMapsCsvRecords()
+    public void ArenaService_AutoMapperCorrectlyMapsCsvRecords()
     {
-        var result = this.arenaService.Some(this.arenaCsvRecords);
+        var result = this.arenaService.MapCsvRecords(this.arenaCsvRecords);
 
         Assert.NotNull(result);
 

@@ -9,7 +9,7 @@ public class ArenaService : IArenaService
 
     public ArenaService(IMapper mapper) => this.mapper = mapper;
 
-    public IEnumerable<ArenaRecord> Some(IEnumerable<ArenaCsvRecord> arenaCsvRecords)
+    public IEnumerable<ArenaRecord> MapCsvRecords(IEnumerable<ArenaCsvRecord> arenaCsvRecords)
     {
         var mappedArenaRecords = new List<ArenaRecord>();
         var orderedFilteredArenaCsvRecords = arenaCsvRecords
