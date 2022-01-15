@@ -16,8 +16,8 @@ public class ArenaRecord
     public DateTime EndTime { get; set; }
     public Zone Zone { get; set; }
     public TimeSpan Duration { get; set; }
-    public TeamRecord Team { get; set; }
-    public TeamRecord EnemyTeam { get; set; }
+    public TeamRecord Team { get; set; } = new();
+    public TeamRecord EnemyTeam { get; set; } = new();
     public int OldTeamRating { get; set; }
     public int NewTeamRating { get; set; }
     public int DiffRating { get; set; }

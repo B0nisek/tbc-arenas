@@ -16,5 +16,11 @@ public class TeamRecord
     public string Name { get; set; }
     public HashSet<PlayerRecord> Players { get; set; } = new();
     public Faction Faction => this.Players.Count is 0 || this.Players.First() is null ? Faction.Horde : this.Players.First().GetFaction();
-    public Bracket Bracket => (Bracket)this.Players.Count;
+    public Bracket Bracket => this.Players.Count switch
+    {
+        2 => Bracket.Twos,
+        3 => Bracket.Threes,
+        5 => Bracket.Fives,
+        _ => Bracket.None,
+    };
 }
