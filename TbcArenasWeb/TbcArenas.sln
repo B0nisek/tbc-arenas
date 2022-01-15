@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TbcArenas.Client", "TbcAren
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TbcArenas.Shared", "TbcArenas\Shared\TbcArenas.Shared.csproj", "{40B8F766-D724-4CE5-B1A1-E57A5EB69FD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TbcArenas.Tests", "TbcArenas.Tests\TbcArenas.Tests.csproj", "{290E0946-CE36-425B-B4E2-7F415EE79B78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TbcArenas.Tests", "TbcArenas.Tests\TbcArenas.Tests.csproj", "{290E0946-CE36-425B-B4E2-7F415EE79B78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

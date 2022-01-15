@@ -1,0 +1,42 @@
+﻿@page "/arena"
+@using TbcArenas.Shared.Models;
+@inject HttpClient Http
+
+<h1>Arena</h1>
+
+<p>Arena analyze</p>
+
+
+@if (arenas == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Zone</th>
+                <th>Bracket</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var arena in arenas)
+            {
+                <tr>
+                    <td>@arena.Zone</td>
+                    <td>@arena.Team.Bracket</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<ArenaRecord> arenas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        arenas = await Http.GetFromJsonAsync<IEnumerable<ArenaRecord>>("Arena");
+    }
+}
