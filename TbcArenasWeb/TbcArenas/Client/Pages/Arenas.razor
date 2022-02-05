@@ -1,0 +1,39 @@
+﻿@page "/arenas"
+@using TbcArenas.Shared.Models
+@inject IArenasClient Client
+
+<PageTitle>TBC Arenas</PageTitle>
+
+<h1>Arena Stats</h1>
+
+@if (arenas == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Arenas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var arena in arenas)
+            {
+                <tr>
+                    <td>@arena.Team.Composition() vs @arena.EnemyTeam.Composition()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ICollection<ArenaRecord> arenas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        arenas = await Client.GetAsync();
+    }
+}

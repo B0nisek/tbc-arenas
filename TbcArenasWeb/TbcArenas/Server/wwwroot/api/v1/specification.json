@@ -6,6 +6,29 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/Arenas": {
+      "get": {
+        "tags": [
+          "Arenas"
+        ],
+        "operationId": "Arenas_Get",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ArenaRecord"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -32,6 +55,225 @@
   },
   "components": {
     "schemas": {
+      "ArenaRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "isRanked": {
+            "type": "boolean"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "zone": {
+            "$ref": "#/components/schemas/Zone"
+          },
+          "duration": {
+            "type": "string",
+            "format": "duration"
+          },
+          "team": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TeamRecord"
+              }
+            ]
+          },
+          "enemyTeam": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TeamRecord"
+              }
+            ]
+          },
+          "oldTeamRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "newTeamRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "diffRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mmr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "enemyOldTeamRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "enemyNewTeamRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "enemyDiffRating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "enemyMmr": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Zone": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Nagrand",
+          "BladesEdgeMountains",
+          "RuinsOfLordaeron"
+        ],
+        "enum": [
+          3698,
+          3702,
+          3968
+        ]
+      },
+      "TeamRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "mmr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "players": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/PlayerRecord"
+            }
+          },
+          "faction": {
+            "$ref": "#/components/schemas/Faction"
+          },
+          "bracket": {
+            "$ref": "#/components/schemas/Bracket"
+          }
+        }
+      },
+      "PlayerRecord": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "class": {
+            "$ref": "#/components/schemas/Class"
+          },
+          "race": {
+            "$ref": "#/components/schemas/Race"
+          }
+        }
+      },
+      "Class": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "None",
+          "Warrior",
+          "Paladin",
+          "Hunter",
+          "Priest",
+          "Shaman",
+          "Mage",
+          "Warlock",
+          "Druid",
+          "Rogue"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "Race": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "None",
+          "Human",
+          "Dwarf",
+          "NightElf",
+          "Gnome",
+          "Draenei",
+          "Orc",
+          "Undead",
+          "Tauren",
+          "Troll",
+          "BloodElf"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "Faction": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Horde",
+          "Alliance"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "Bracket": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "None",
+          "Twos",
+          "Threes",
+          "Fives"
+        ],
+        "enum": [
+          0,
+          2,
+          3,
+          5
+        ]
+      },
       "WeatherForecast": {
         "type": "object",
         "additionalProperties": false,

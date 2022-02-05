@@ -23,4 +23,20 @@ public class TeamRecord
         5 => Bracket.Fives,
         _ => Bracket.None,
     };
+    public string Composition()
+    {
+        var comp = string.Empty;
+
+        if (this.Players.Count == 0)
+        {
+            return comp;
+        }
+
+        foreach (var player in this.Players)
+        {
+            comp += $"{player.Class}/";
+        }
+
+        return comp.Remove(comp.Length - 1);
+    }
 }
