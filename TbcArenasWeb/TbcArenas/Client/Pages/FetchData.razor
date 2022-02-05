@@ -1,8 +1,6 @@
 ﻿@page "/fetchdata"
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using TbcArenas.Shared
-@attribute [Authorize]
+@inject IWeatherForecastClient Client
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>
@@ -41,17 +39,10 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private ICollection<WeatherForecast> forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
-        }
-        catch (AccessTokenNotAvailableException exception)
-        {
-            exception.Redirect();
-        }
+        forecasts = await Client.GetAsync();
     }
 }
