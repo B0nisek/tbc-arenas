@@ -1,5 +1,7 @@
 ﻿@page "/arenas"
 @using TbcArenas.Shared.Models
+@using TbcArenas.Client.Components
+@using TbcArenas.Client.Extensions
 @inject IArenasClient Client
 
 <PageTitle>TBC Arenas</PageTitle>
@@ -12,13 +14,19 @@
 }
 else
 {
-    <MudTable Items="arenas" Hover="true" SortLabel="Sort By" Elevation="0">
+    <MudTable Items="arenas" Hover="true" SortLabel="Sort By" Elevation="0" FixedHeader="true">
         <HeaderContent>
             <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ArenaRecord, object>(x=>x.EndTime)">Date</MudTableSortLabel></MudTh>
+            <MudTh>Zone</MudTh>
+            <MudTh>Rating</MudTh>
+            <MudTh>Comp</MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<ArenaRecord, object>(x=>x.Mmr)">MMR</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd DataLabel="End">@context.EndTime</MudTd>
+            <MudTd DataLabel="End">@context.EndTime.ToShortDateString()</MudTd>
+            <MudTd DataLabel="Zone">@context.Zone.ZoneToString()</MudTd>
+            <MudTd DataLabel="Rating"><Rating ArenaRecord=@context /></MudTd>
+            <MudTd DataLabel="Comp"><Players TeamComp=@context.Team.Players /> vs. <Players TeamComp=@context.EnemyTeam.Players /></MudTd>
             <MudTd DataLabel="MMR">@context.Mmr</MudTd>
         </RowTemplate>
         <PagerContent>

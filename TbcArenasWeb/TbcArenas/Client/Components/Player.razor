@@ -1,0 +1,31 @@
+﻿@using TbcArenas.Shared.Models
+
+@if (this.PlayerRecord is not null)
+{
+    <span Style=@this.GetStyle()>@($"{this.PlayerRecord.Name} ")</span>
+}
+
+@code {
+    [Parameter]
+    public PlayerRecord PlayerRecord { get; set; }
+
+    private string GetStyle()
+    {
+        var fontSize = "font-size:1.2em;";
+
+        var color = this.PlayerRecord.Class switch
+        {
+            Class.Paladin => $"color:{Colors.Purple.Lighten2}",
+            Class.Shaman => $"color:{Colors.Indigo.Accent4}",
+            Class.Warlock => $"color:{Colors.DeepPurple.Accent2}",
+            Class.Warrior => $"color:{Colors.Brown.Darken1}",
+            Class.Mage => $"color:{Colors.Cyan.Default}",
+            Class.Rogue => $"color:{Colors.Yellow.Accent2}",
+            Class.Priest => $"color:{Colors.Shades.White}",
+            Class.Druid => $"color:{Colors.Orange.Accent3}",
+            _ => ""
+        };
+
+        return fontSize + color;
+    }
+}

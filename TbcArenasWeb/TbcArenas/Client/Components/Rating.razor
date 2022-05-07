@@ -1,0 +1,17 @@
+﻿@using TbcArenas.Shared.Models
+
+@if (ArenaRecord is not null)
+{
+    <MudText Style=@this.GetStyle()>@($"{ArenaRecord.NewTeamRating} {this.GetDifference()}")</MudText>
+}
+
+@code {
+    [Parameter]
+    public ArenaRecord ArenaRecord { get; set; }
+
+    private bool IsWin() => ArenaRecord.NewTeamRating > ArenaRecord.OldTeamRating;
+
+    private string GetDifference() => this.IsWin() ? $"(+{ArenaRecord.DiffRating})" : $"(-{ArenaRecord.DiffRating})";
+
+    private string GetStyle() => this.IsWin() ? $"color:{Colors.LightGreen.Default}" : $"color:{Colors.Red.Default}";
+}

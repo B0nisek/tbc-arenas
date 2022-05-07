@@ -5,8 +5,11 @@ namespace TbcArenas.Shared.Models;
 public enum Zone
 {
     RuinsOfLordaeron = 3968,
+    RuinsOfLordaeron2 = 572,
     Nagrand = 3698,
-    BladesEdgeMountains = 3702
+    Nagrand2 = 559,
+    BladesEdgeMountains = 3702,
+    BladesEdgeMountains2 = 562,
 }
 
 public class ArenaRecord

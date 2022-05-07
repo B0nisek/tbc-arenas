@@ -131,11 +131,17 @@
         "type": "integer",
         "description": "",
         "x-enumNames": [
+          "Nagrand2",
+          "BladesEdgeMountains2",
+          "RuinsOfLordaeron2",
           "Nagrand",
           "BladesEdgeMountains",
           "RuinsOfLordaeron"
         ],
         "enum": [
+          559,
+          562,
+          572,
           3698,
           3702,
           3968

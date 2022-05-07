@@ -1,0 +1,14 @@
+﻿@using TbcArenas.Shared.Models
+
+@if (this.TeamComp is not null)
+{
+    foreach (var player in this.TeamComp)
+    {
+        <Player PlayerRecord=@player/>
+    }
+}
+
+@code {
+    [Parameter]
+    public IEnumerable<PlayerRecord> TeamComp { get; set; }
+}
