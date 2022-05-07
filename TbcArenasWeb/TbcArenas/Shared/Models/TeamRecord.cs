@@ -11,8 +11,8 @@ public enum Bracket
 
 public class TeamRecord
 {
-    public int Mmr { get; set; }
-    public int Rating { get; set; }
+    public int? Mmr { get; set; }
+    public int? Rating { get; set; }
     public string Name { get; set; }
     public HashSet<PlayerRecord> Players { get; set; } = new();
     public Faction Faction => this.Players.Count is 0 || this.Players.First() is null ? Faction.Horde : this.Players.First().GetFaction();
@@ -27,7 +27,7 @@ public class TeamRecord
     {
         var comp = string.Empty;
 
-        if (this.Players.Count == 0)
+        if (this.Players.Count is 0)
         {
             return comp;
         }

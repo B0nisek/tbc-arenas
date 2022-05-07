@@ -68,28 +68,28 @@ public class ArenaCsvRecord
     public string TeamPlayerRace5 { get; set; }
 
     [Name("oldTeamRating")]
-    public int OldTeamRating { get; set; }
+    public int? OldTeamRating { get; set; }
 
     [Name("newTeamRating")]
-    public int NewTeamRating { get; set; }
+    public int? NewTeamRating { get; set; }
 
     [Name("diffRating")]
-    public int DiffRating { get; set; }
+    public int? DiffRating { get; set; }
 
     [Name("mmr")]
-    public int Mmr { get; set; }
+    public int? Mmr { get; set; }
 
     [Name("enemyOldTeamRating")]
-    public int EnemyOldTeamRating { get; set; }
+    public int? EnemyOldTeamRating { get; set; }
 
     [Name("enemyNewTeamRating")]
-    public int EnemyNewTeamRating { get; set; }
+    public int? EnemyNewTeamRating { get; set; }
 
     [Name("enemyDiffRating")]
-    public int EnemyDiffRating { get; set; }
+    public int? EnemyDiffRating { get; set; }
 
     [Name("enemyMmr")]
-    public int EnemyMmr { get; set; }
+    public int? EnemyMmr { get; set; }
 
     [Name("enemyTeamName")]
     public string EnemyTeamName { get; set; }

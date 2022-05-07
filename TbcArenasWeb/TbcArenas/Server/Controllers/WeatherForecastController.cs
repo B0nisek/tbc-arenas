@@ -16,7 +16,7 @@ public class WeatherForecastController : ControllerBase
     {
         await Task.Delay(4000);
 
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        return Enumerable.Range(1, 200).Select(index => new WeatherForecast
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),

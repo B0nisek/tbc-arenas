@@ -5,7 +5,7 @@ namespace TbcArenas.Shared.Services.Arena;
 
 public class ArenaService : IArenaService
 {
-    private const int MaxPlayers = 5;
+    private const int maxPlayers = 5;
     private readonly IMapper mapper;
 
     public ArenaService(IMapper mapper) => this.mapper = mapper;
@@ -56,7 +56,7 @@ public class ArenaService : IArenaService
         var classProp = isEnemy ? "EnemyPlayerClass" : "TeamPlayerClass";
         var raceProp = isEnemy ? "EnemyPlayerRace" : "TeamPlayerRace";
 
-        for (var i = 1; i <= MaxPlayers; i++)
+        for (var i = 1; i <= maxPlayers; i++)
         {
             var nameValue = arenaCsvRecord.GetType().GetProperty($"{nameProp}{i}").GetValue(arenaCsvRecord, null)?.ToString();
             var classValue = arenaCsvRecord.GetType().GetProperty($"{classProp}{i}").GetValue(arenaCsvRecord, null)?.ToString();

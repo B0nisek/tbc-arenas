@@ -4,29 +4,27 @@
 
 <PageTitle>TBC Arenas</PageTitle>
 
-<h1>Arena Stats</h1>
+<MudText Typo="Typo.h3" GutterBottom="true">Arena Statistics</MudText>
 
 @if (arenas == null)
 {
-    <p><em>Loading...</em></p>
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Arenas</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var arena in arenas)
-            {
-                <tr>
-                    <td>@arena.Team.Composition() vs @arena.EnemyTeam.Composition()</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <MudTable Items="arenas" Hover="true" SortLabel="Sort By" Elevation="0">
+        <HeaderContent>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<ArenaRecord, object>(x=>x.EndTime)">Date</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<ArenaRecord, object>(x=>x.Mmr)">MMR</MudTableSortLabel></MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="End">@context.EndTime</MudTd>
+            <MudTd DataLabel="MMR">@context.Mmr</MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <MudTablePager PageSizeOptions="new int[]{50, 100}" />
+        </PagerContent>
+    </MudTable>
 }
 
 @code {
